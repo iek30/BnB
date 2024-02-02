@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inicio de sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-card-content>
+      <div>
+        <ion-img src="..\assets\logo.png"></ion-img>
+      </div>
+      
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" (click)="iniciarSesion()">Iniciar sesión</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <a href="https://www.airbnb.es/a/discover/?account_id=2404520&campaign_id=272400578&ad_id=81020329173242&ad_group_id=1296324380016497&keyword_id=kwd-81020358907034&device=c&c=.pi2.pk272400578_1296324380016497&ghost=true&msclkid=d7b2e239684a167873488785bc57bd47&utm_source=bing&utm_medium=cpc&utm_campaign=ESP%3ADTM%3ABRD%3AAIRBNB%5BEXACT%5D&utm_term=airbnb&utm_content=Airbnb%3A%2BEXACT">www.airbnb.com</a>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
