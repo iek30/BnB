@@ -18,7 +18,16 @@ const routes: Routes = [
   {
     path: 'places',
     loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule)
+  },  {
+    path: 'new-offer',
+    loadChildren: () => import('./new-offer/new-offer.module').then( m => m.NewOfferPageModule)
   },
+  {
+    path: 'info-offer',
+    loadChildren: () => import('./info-offer/info-offer.module').then( m => m.InfoOfferPageModule)
+  },
+
+
 ];
 
 @NgModule({

@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>new-offer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">New Offer</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-input label="Name" label-placement="floating" fill="outline" placeholder="Ej.: Finca Los Olivos" [(ngModel)]="nombre"></ion-input>
+  <ion-input label="Description" label-placement="floating" fill="outline" placeholder="Ej.: Muy espaciosa, cálida, rústica..." [(ngModel)]="descripcion"></ion-input>
+  <ion-input label="Price" label-placement="floating" fill="outline" placeholder="Ej.: 200 €" [(ngModel)]="precio"></ion-input>
+  <ion-button expand="block" (click)="addNew()">Add New Offer</ion-button>
+  
+
+</ion-content>

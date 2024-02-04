@@ -32,21 +32,17 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding">
-    <!-- Contenido de la página principal -->
-  </ion-content>
-
-  <ion-footer>
-    <ion-toolbar>
-      <ion-segment value="discover">
-        <ion-segment-button value="discover">
-          <ion-label>Discover</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="offer">
-          <ion-label>Offer</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
-  </ion-footer>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="discover">
+        <ion-icon name="eye-outline"></ion-icon>
+        Discover
+      </ion-tab-button>
+      <ion-tab-button tab="offers">
+        <ion-icon name="home-outline"></ion-icon>
+        Offers
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 
 </ion-app>

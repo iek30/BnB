@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,17 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router:Router) { }
+  user:any
+  password:any
+
+  constructor(private router:Router, private userService:UserService) { }
 
   iniciarSesion() {
-    this.router.navigate(['/places']);
+    if (this.userService.comprobarAcceso(this.user,this.password)){
+      this.userService.setUser(this.user)
+      this.router.navigate(['/places']);
+    }
+    else alert('Usuario o contraseña incorrecta');
   }
 
   ngOnInit() {

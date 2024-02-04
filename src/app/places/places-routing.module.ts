@@ -6,8 +6,24 @@ import { PlacesPage } from './places.page';
 const routes: Routes = [
   {
     path: '',
-    component: PlacesPage
+    redirectTo: 'discover', // Redirige a discover al cargar la página principal
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: PlacesPage,
+    children: [
+      {
+        path: 'discover',
+        loadChildren: () => import('../discover/discover.module').then( m => m.DiscoverPageModule)
+      },
+      {
+        path: 'offers',
+        loadChildren: () => import('../offers/offers.module').then( m => m.OffersPageModule)
+      },
+    ]
   }
+
 ];
 
 @NgModule({
