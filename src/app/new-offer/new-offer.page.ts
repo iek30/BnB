@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiscoverService } from '../services/discover.service';
 import { AlertController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
+import { PhotoService } from '../services/photo.service';
 
 
 @Component({
@@ -11,12 +12,13 @@ import { UserService } from '../services/user.service';
 })
 export class NewOfferPage implements OnInit {
 
+  course: any;
   nombre: any;
   descripcion: any;
   precio: any;
   correo:any
 
-  constructor(private discoverService:DiscoverService, private alertController: AlertController, private userService:UserService) {
+  constructor(private discoverService:DiscoverService, private alertController: AlertController, private userService:UserService, private photoService:PhotoService) {
     this.correo = this.userService.getActualUser()
   }
 
@@ -33,6 +35,28 @@ export class NewOfferPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async pickFromCamera(): Promise<void> {
+    let imageUrl = await this.photoService.takePhoto();
+    
+    if (imageUrl) {
+      this.course.imageUrl = imageUrl;
+      this.addCourseImageUrl(this.course['id'], imageUrl);
+    }
+  }
+
+  async pickFromGallery(): Promise<void> {
+    let imageUrl = await this.photoService.pickFromGallery();
+    
+    if (imageUrl) {
+      this.course.imageUrl = imageUrl;
+      this.addCourseImageUrl(this.course['id'], imageUrl);
+    }
+  }
+
+  addCourseImageUrl(id: string, imageUrl: string): void {
+    //this.coursesService.addCourseImageUrl(id, imageUrl);
   }
 
   ngOnInit() {
