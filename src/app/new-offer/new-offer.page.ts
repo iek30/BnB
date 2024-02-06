@@ -18,6 +18,24 @@ export class NewOfferPage implements OnInit {
   precio: any;
   correo:any
 
+  actionSheetButtons = [
+    {
+      text: 'Cámara',
+      handler: () => this.pickFromCamera(),
+    },
+    {
+      text: 'Galería',
+      handler: () => this.pickFromGallery(),
+    },
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      data: {
+        action: 'cancel',
+      },
+    },
+  ];
+
   constructor(private discoverService:DiscoverService, private alertController: AlertController, private userService:UserService, private photoService:PhotoService) {
     this.correo = this.userService.getActualUser()
   }
@@ -56,7 +74,7 @@ export class NewOfferPage implements OnInit {
   }
 
   addCourseImageUrl(id: string, imageUrl: string): void {
-    //this.coursesService.addCourseImageUrl(id, imageUrl);
+    //this.discoverService.addAlojamiento(id, imageUrl);
   }
 
   ngOnInit() {

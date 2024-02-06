@@ -28,7 +28,7 @@ export class DiscoverService {
   }
 
   addAlojamiento(nombre: String, descripcion: String, imagen: any, precio: number,correo:string): void {
-    const nuevoAlojamiento = new Discover(nombre, descripcion, '', precio,correo);
+    const nuevoAlojamiento = new Discover(nombre, descripcion, imagen, precio,correo);
     this.alojamientos = [...this.alojamientos, nuevoAlojamiento];
     this.sujeto.next(this.getAlojamientos());
   }
