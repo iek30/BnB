@@ -22,9 +22,13 @@ export class OffersPage implements OnInit {
     this.router.navigate(['/new-offer']);
   }
 
-  openInfoPage() {
+  openInfoPage(alojamiento:any) {
     const parametros = {
-      nombre: 'valor1'
+      nombre: alojamiento.nombre,
+      descripcion:alojamiento.descripcion,
+      imagen:'',
+      precio:alojamiento.precio,
+      correo:alojamiento.correo
     };
     this.navCtrl.navigateForward(['/info-offer',parametros]);
   }

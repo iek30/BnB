@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>edit-offer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Edit</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-card>
+    <div id="imageSelector">
+      <img *ngIf="discover.imagen" alt="Silhouette of mountains" [src]="discover.imagen" />
+      <img *ngIf="!discover.imagen" alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+    </div>
+    <ion-card-header>
+      <ion-input label="Name" [(ngModel)]="discover.nombre" label-placement="floating" fill="outline" placeholder="Ej.: Finca Los Olivos"></ion-input>
+      <ion-input label="Description" [(ngModel)]="discover.descripcion" label-placement="floating" fill="outline" placeholder="Ej.: Muy espaciosa, cálida, rústica..."></ion-input>
+      <ion-input label="Price" [(ngModel)]="discover.precio" label-placement="floating" fill="outline" placeholder="Ej.: 200 €"></ion-input>
+    </ion-card-header>
+
+    <ion-card-content>
+      <b>Begin Date</b>
+    </ion-card-content>
+    <ion-datetime presentation="date"></ion-datetime>
+    <ion-card-content>
+      <b>Finish Date</b>
+    </ion-card-content>
+    <ion-datetime presentation="date"></ion-datetime>
+  </ion-card>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="pencil-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-action-sheet trigger="imageSelector" header="Selección de imagen" [buttons]="actionSheetButtons"></ion-action-sheet>
+
+</ion-content>

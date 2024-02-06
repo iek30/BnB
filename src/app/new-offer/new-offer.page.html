@@ -14,16 +14,6 @@
   <ion-input label="Name" label-placement="floating" fill="outline" placeholder="Ej.: Finca Los Olivos" [(ngModel)]="nombre"></ion-input>
   <ion-input label="Description" label-placement="floating" fill="outline" placeholder="Ej.: Muy espaciosa, cálida, rústica..." [(ngModel)]="descripcion"></ion-input>
   <ion-input label="Price" label-placement="floating" fill="outline" placeholder="Ej.: 200 €" [(ngModel)]="precio"></ion-input>
-
-  <ion-card id="imageSelector">
-    <ion-card-content>
-      <ion-text color="medium">Seleccionar una imagen</ion-text>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-action-sheet trigger="imageSelector" header="Selección de imagen" [buttons]="actionSheetButtons"></ion-action-sheet>
-
   <ion-button expand="block" (click)="addNew()">Add New Offer</ion-button>
   
-
 </ion-content>

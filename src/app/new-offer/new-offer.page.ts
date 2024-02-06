@@ -12,7 +12,7 @@ import { PhotoService } from '../services/photo.service';
 })
 export class NewOfferPage implements OnInit {
 
-  course: any;
+  offer: any;
   nombre: any;
   descripcion: any;
   precio: any;
@@ -59,8 +59,8 @@ export class NewOfferPage implements OnInit {
     let imageUrl = await this.photoService.takePhoto();
     
     if (imageUrl) {
-      this.course.imageUrl = imageUrl;
-      this.addCourseImageUrl(this.course['id'], imageUrl);
+      this.offer.imageUrl = imageUrl;
+      this.addCourseImageUrl(this.offer['id'], imageUrl);
     }
   }
 
@@ -68,8 +68,8 @@ export class NewOfferPage implements OnInit {
     let imageUrl = await this.photoService.pickFromGallery();
     
     if (imageUrl) {
-      this.course.imageUrl = imageUrl;
-      this.addCourseImageUrl(this.course['id'], imageUrl);
+      this.offer.imageUrl = imageUrl;
+      this.addCourseImageUrl(this.offer['id'], imageUrl);
     }
   }
 

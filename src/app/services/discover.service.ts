@@ -42,4 +42,13 @@ export class DiscoverService {
     }
   }
 
+  addOfferImageUrl(nombre: string, imageUrl: string): void {
+    let aux = this.getAlojamientos().find(aloj => aloj.nombre === nombre);
+
+    if (aux) {
+      aux.imagen = imageUrl;
+      this.sujeto.next(this.getAlojamientos());
+    }
+  }
+
 }
