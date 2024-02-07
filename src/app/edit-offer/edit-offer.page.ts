@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Discover } from '../model/discover';
 import { PhotoService } from '../services/photo.service';
 import { DiscoverService } from '../services/discover.service';
@@ -31,7 +31,7 @@ export class EditOfferPage implements OnInit {
     },
   ];
 
-  constructor(private route: ActivatedRoute, private photoService:PhotoService, private discoverService:DiscoverService) { }
+  constructor(private cdr: ChangeDetectorRef, private route: ActivatedRoute, private photoService:PhotoService, private discoverService:DiscoverService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -48,6 +48,9 @@ export class EditOfferPage implements OnInit {
     if (imageUrl) {
       this.discover.imageUrl = imageUrl;
       this.addOfferImageUrl(this.discover.nombre, imageUrl);
+          // Forzar actualización manual
+      this.cdr.detectChanges();
+      this.addOfferImageUrl(this.discover.nombre, imageUrl);
     }
   }
 
@@ -56,6 +59,9 @@ export class EditOfferPage implements OnInit {
     
     if (imageUrl) {
       this.discover.imageUrl = imageUrl;
+      this.addOfferImageUrl(this.discover.nombre, imageUrl);
+          // Forzar actualización manual
+      this.cdr.detectChanges();
       this.addOfferImageUrl(this.discover.nombre, imageUrl);
     }
   }

@@ -74,7 +74,7 @@ export class NewOfferPage implements OnInit {
   }
 
   addCourseImageUrl(id: string, imageUrl: string): void {
-    //this.discoverService.addAlojamiento(id, imageUrl);
+    this.discoverService.addOfferImageUrl(id, imageUrl);
   }
 
   ngOnInit() {
