@@ -21,7 +21,7 @@
     <ion-item-sliding>
       <ion-item [button]="true">
         <ion-avatar aria-hidden="true" slot="start">
-          <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          <img alt="" src="{{offer.imagen}}" />
         </ion-avatar>
         <ion-label>{{offer.nombre}}</ion-label>
       </ion-item>
@@ -29,7 +29,7 @@
         <ion-item-option color="tertiary" (click)="openInfoPage(offer)">
           <ion-icon slot="icon-only" name="construct"></ion-icon>
         </ion-item-option>
-        <ion-item-option color="danger" expandable="true" (click)="borrar(offer.nombre)">
+        <ion-item-option color="danger" expandable="true" (click)="borrar(offer)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

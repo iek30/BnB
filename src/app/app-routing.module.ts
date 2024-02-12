@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'places',
     loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule)
-  },  {
+  },
+  {
     path: 'new-offer',
     loadChildren: () => import('./new-offer/new-offer.module').then( m => m.NewOfferPageModule)
   },
@@ -30,6 +31,18 @@ const routes: Routes = [
     path: 'edit-offer',
     loadChildren: () => import('./edit-offer/edit-offer.module').then( m => m.EditOfferPageModule)
   },
+  {
+    path: 'discover',
+    loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
+  },
+  {
+    path: 'offers',
+    loadChildren: () => import('./offers/offers.module').then( m => m.OffersPageModule)
+  },  {
+    path: 'booking',
+    loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule)
+  }
+
 
 
 ];

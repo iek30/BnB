@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Discover } from '../model/discover';
 import { PhotoService } from '../services/photo.service';
 import { DiscoverService } from '../services/discover.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-offer',
@@ -11,7 +12,7 @@ import { DiscoverService } from '../services/discover.service';
 })
 export class EditOfferPage implements OnInit {
 
-  discover:any;
+  discover?:Discover;
 
   actionSheetButtons = [
     {
@@ -31,14 +32,18 @@ export class EditOfferPage implements OnInit {
     },
   ];
 
-  constructor(private cdr: ChangeDetectorRef, private route: ActivatedRoute, private photoService:PhotoService, private discoverService:DiscoverService) { }
+  constructor(private router:Router, private route: ActivatedRoute, private photoService:PhotoService, private discoverService:DiscoverService) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(params => {
-      const nombre = params['nombre'];
-      const precio = params['precio'];
-      const descripcion = params['descripcion'];
-      this.discover = new Discover(nombre,descripcion,'',precio,'this.userService.getActualUser()')
+      const id = params['id']
+      const nombre = params['nombre']
+      const precio = params['precio']
+      const imagen = params['imagen']
+      const descripcion = params['descripcion']
+      const correo = params['correo']
+      this.discover = new Discover(id,nombre,descripcion,imagen,precio,correo)
     });
   }
 
@@ -46,11 +51,7 @@ export class EditOfferPage implements OnInit {
     let imageUrl = await this.photoService.takePhoto();
     
     if (imageUrl) {
-      this.discover.imageUrl = imageUrl;
-      this.addOfferImageUrl(this.discover.nombre, imageUrl);
-          // Forzar actualización manual
-      this.cdr.detectChanges();
-      this.addOfferImageUrl(this.discover.nombre, imageUrl);
+      this.discoverService.updateFoto(this.discover!.id,imageUrl)
     }
   }
 
@@ -58,16 +59,19 @@ export class EditOfferPage implements OnInit {
     let imageUrl = await this.photoService.pickFromGallery();
     
     if (imageUrl) {
-      this.discover.imageUrl = imageUrl;
-      this.addOfferImageUrl(this.discover.nombre, imageUrl);
-          // Forzar actualización manual
-      this.cdr.detectChanges();
-      this.addOfferImageUrl(this.discover.nombre, imageUrl);
+      this.discoverService.updateFoto(this.discover!.id,imageUrl)
     }
   }
 
-  addOfferImageUrl(nombre: string, imageUrl: string): void {
-    this.discoverService.addOfferImageUrl(nombre, imageUrl);
+  guardarCambios():void{
+    this.discoverService.updateAlojamiento(
+      this.discover!.id,
+      this.discover!.nombre,
+      this.discover!.descripcion, 
+      this.discover!.imagen, 
+      this.discover!.precio
+    )
+    //this.router.navigate(['/offers'])
   }
 
 }

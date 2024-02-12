@@ -24,17 +24,18 @@ export class OffersPage implements OnInit {
 
   openInfoPage(alojamiento:any) {
     const parametros = {
+      id: alojamiento.id,
       nombre: alojamiento.nombre,
       descripcion:alojamiento.descripcion,
-      imagen:'',
+      imagen:alojamiento.imagen,
       precio:alojamiento.precio,
-      correo:alojamiento.correo
+      correo:alojamiento.correo,
     };
     this.navCtrl.navigateForward(['/info-offer',parametros]);
   }
 
-  borrar(borrado:String) {
-    this.discoverService.removeAlojamiento(borrado)
+  borrar(offer:any) {
+    this.discoverService.removeAlojamiento(offer.id)
   }
 
   ngOnInit() {

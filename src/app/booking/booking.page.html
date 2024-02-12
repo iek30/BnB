@@ -7,11 +7,11 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Discovers</ion-title>
+      <ion-title size="large">Bookings</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-card *ngFor="let discover of alojamientos">
+  <ion-card *ngFor="let discover of reservas">
     <img src="{{discover.imagen}}" />
     <ion-card-header>
       <ion-card-title>{{discover.precio}}€</ion-card-title>
@@ -19,9 +19,7 @@
     </ion-card-header>
   
     <ion-card-content>{{discover.descripcion}}</ion-card-content>
-    <ion-button (click)="onClickReservar(discover)">Reservar</ion-button>
-    <h3 class="ok" *ngIf="discover.reservado">Reservado</h3>
-    <h3 class="no-ok" *ngIf="!discover.reservado">Libre</h3>    
   </ion-card>
 
 </ion-content>
+

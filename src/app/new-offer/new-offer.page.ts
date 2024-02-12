@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DiscoverService } from '../services/discover.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 import { PhotoService } from '../services/photo.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,30 +19,15 @@ export class NewOfferPage implements OnInit {
   precio: any;
   correo:any
 
-  actionSheetButtons = [
-    {
-      text: 'Cámara',
-      handler: () => this.pickFromCamera(),
-    },
-    {
-      text: 'Galería',
-      handler: () => this.pickFromGallery(),
-    },
-    {
-      text: 'Cancelar',
-      role: 'cancel',
-      data: {
-        action: 'cancel',
-      },
-    },
-  ];
-
-  constructor(private discoverService:DiscoverService, private alertController: AlertController, private userService:UserService, private photoService:PhotoService) {
+  constructor(private navCrtl:NavController, private discoverService:DiscoverService, private alertController: AlertController, private userService:UserService, private photoService:PhotoService) {
     this.correo = this.userService.getActualUser()
   }
 
   addNew() {
-    if (this.nombre && this.descripcion && this.precio) this.discoverService.addAlojamiento(this.nombre,this.descripcion,'',this.precio,this.correo)
+    if (this.nombre && this.descripcion && this.precio) {
+      this.discoverService.addAlojamiento(this.nombre,this.descripcion,this.precio,this.correo)
+      this.navCrtl.back()
+    }
     else this.mostrarAlerta('Todos los campos son obligatorios');
   }
 
@@ -53,28 +39,6 @@ export class NewOfferPage implements OnInit {
     });
 
     await alert.present();
-  }
-
-  async pickFromCamera(): Promise<void> {
-    let imageUrl = await this.photoService.takePhoto();
-    
-    if (imageUrl) {
-      this.offer.imageUrl = imageUrl;
-      this.addCourseImageUrl(this.offer['id'], imageUrl);
-    }
-  }
-
-  async pickFromGallery(): Promise<void> {
-    let imageUrl = await this.photoService.pickFromGallery();
-    
-    if (imageUrl) {
-      this.offer.imageUrl = imageUrl;
-      this.addCourseImageUrl(this.offer['id'], imageUrl);
-    }
-  }
-
-  addCourseImageUrl(id: string, imageUrl: string): void {
-    this.discoverService.addOfferImageUrl(id, imageUrl);
   }
 
   ngOnInit() {
